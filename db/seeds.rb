@@ -7,15 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'ffaker'
+require 'cpf_cnpj'
 
 puts "Criando Clientes"
-10.times do |i|
+
+200.times do |i|
 	puts "Criando clientes bloco #{i}"
 
 	clientes = Cliente.create!(
 		nome: FFaker::NameBR.name,
 		email: FFaker::Internet.email,
-		cpf: '123.456.789-00',
+		cpf: CPF.generate(true),
 		data_nascimento: FFaker::Time.date,
 		fone: FFaker::PhoneNumberAU.home_work_phone_number,
 	)

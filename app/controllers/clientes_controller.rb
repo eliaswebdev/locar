@@ -2,7 +2,11 @@ class ClientesController < ApplicationController
 	before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@clientes = Cliente.all
+		if params[:search].present?
+			@clientes = Cliente.search(params[:search]).page params[:page]
+		else
+			@clientes = Cliente.page params[:page]
+		end
 	end
 
 	def show

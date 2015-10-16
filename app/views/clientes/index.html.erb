@@ -1,51 +1,56 @@
+<%- model_class = Cliente -%>
 <div class="page-header">
-	<%= link_to 'Cadastrar', new_cliente_path, class: 'btn btn-primary pull-right' %>
-	<h1>Clientes</h1>
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_cliente_path, :class => 'btn btn-primary pull-right' %>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<table class="table table-bordered table-striped">
-	<thead>
-		<tr>
-			<th>id</th>
-			<th>nome</th>
-			<th>email</th>
-			<th>fone</th>
-			<th>data_nascimento</th>
-			<th>idade</th>
-			<th>created_at</th>
-			<th>opções</th>
-		</tr>
-	</thead>
-	
-	<tbody>
-		<% @clientes.order(id: :desc).each do |cliente| %>
-		<tr>
-			<td><%= cliente.id %></td>
-			<td><%= link_to(cliente.nome, cliente_path(cliente.id)) %></td>
-			<td><%= cliente.email %></td>
-			<td><%= cliente.fone %></td>
-			<td><%= cliente.data_nascimento %></td>
-			<td><%= cliente.idade %></td>
-			<td><%= cliente.created_at %></td>
-			<td>
-				<%= link_to 'Show', cliente, class: 'btn btn-info btn-sm' %>
-				<%= link_to 'Edit', edit_cliente_path(cliente), class: 'btn btn-success btn-sm' %>
+<div class="well">
+  <%= form_tag clientes_path, :method => 'get', html: {class: 'form-inline'} do %>
+    <p>
+      <%= text_field_tag :search, params[:search], class: 'form-control', style: 'width: 300px' %>
+      <%= submit_tag "Search", :name => nil, class: 'btn btn-primary' %>
+    </p>
+  <% end %>
+</div>
 
-				<%= link_to 'Destroy', cliente, 
-					method: :delete, 
-					data: {confirm: 'Deseja mesmo excluir este registro?'}, 
-					class: 'btn btn-danger btn-sm' 
-				%>
-			</td>
-		</tr>
-		<% end %>
-	</tbody>
 
+<%= paginate @clientes %>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:cpf) %></th>
+      <th><%= model_class.human_attribute_name(:fone) %></th>
+      <th><%= model_class.human_attribute_name(:idade) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clientes.each do |cliente| %>
+      <tr>
+        <td><%= link_to cliente.id, cliente_path(cliente) %></td>
+        <td><%= cliente.nome %></td>
+        <td><%= cliente.email %></td>
+        <td nowrap="nowrap"><%= cliente.cpf_formatted %></td>
+        <td nowrap="nowrap"><%= cliente.fone %></td>
+        <td><%= cliente.idade %></td>
+        <td><%=l cliente.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_cliente_path(cliente), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      cliente_path(cliente),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<hr>
-	<p> Total: <%= @clientes.size %> </p>
-<hr>
-
-
-
+<%= paginate @clientes %>

@@ -1,10 +1,4 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "is not an email")
-    end
-  end
-end
+load 'email_validator.rb'
 
 class Cliente < ActiveRecord::Base
 	
@@ -12,10 +6,20 @@ class Cliente < ActiveRecord::Base
 	validates :nome, :cpf, :fone, :data_nascimento, :email, presence: true
 	validates :nome, length: { in: 6..40 }
 	# validates :cpf, numericality: true
-	validates :cpf, numericality: { only_integer: true }
+	# validates :cpf, numericality: { only_integer: true }
+	validates :cpf, cpf: true, uniqueness: true
+	
 	validates :email, email: true
-	validates :email, uniqueness: true, on: :update
+	validates :email, uniqueness: true, on: :create
 
+	## BUSCA SIMPLES
+	def self.search(search)
+	  if search
+	    where('lower(nome) LIKE ?', "%#{search.downcase}%")
+	  else
+	    self.all
+	  end
+	end
 
 	## HELPER
 	def idade
@@ -33,18 +37,9 @@ class Cliente < ActiveRecord::Base
 		end
 	end	
 
-	# def idade(data_nascimento)
-	# 	if data_nascimento.present? && data_nascimento.class == Date.new.class
-	# 	  begin
-	# 	    birthday = data_nascimento
-	# 	    age = Date.today.year - birthday.year
-	# 	    age -= 1 if birthday > Date.today.years_ago(age)
-	# 	    age
-	# 	  rescue Exception => e
-	# 	    e
-	# 	  end
-	# 	else
-	# 		'Inválido'
-	# 	end
-	# end		
+	def cpf_formatted
+		require 'cpf_cnpj'
+		cpff = CPF.new(cpf)
+		cpff.formatted
+	end	
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'contato' => 'paginas#contato', as: :contato
 
   resources :clientes
+  resources :marcas
 
   root 'paginas#index'
 
