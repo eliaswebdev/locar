@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: root
+  port: 5432
+  pool: 5
+
+development:
+  <<: *default
+  database: locar_development
+
+
+test:
+  <<: *default
+  database: locar_test
+
+production:
+  <<: *default
+  database: locar_production
+  username: locar
+  password: <%= ENV['LOCAR_DATABASE_PASSWORD'] %>

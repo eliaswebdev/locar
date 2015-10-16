@@ -1,0 +1,37 @@
+0) Configurar nossa APP para o portugues
+============================================
+1) Descrição: sistema de locação de veículos
+2) Modelos: 
+	- Cliente
+		- id
+		- nome
+		- cpf
+		- fone
+		- data_nascimento
+		+ email
+
+	- Marca
+		- id
+		- nome
+
+	- Modelo
+		- id
+		- marca_id
+		- nome
+
+	- Veículo
+		- id
+		- modelo_id
+		- placa
+		- quilometragem
+		- cor
+		- ano_fabricacao
+		- ano_modelo
+		- portas
+
+	- Locacao
+		- id
+		- cliente_id
+		- veiculo_id
+		- data_locacao
+		- data_devolucao

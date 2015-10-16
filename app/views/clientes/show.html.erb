@@ -1,0 +1,15 @@
+<div class="page-header">
+	<h1>Clientes <small>/ <%= @cliente.nome %></small></h1>
+</div>
+<ul>
+	<li>id: <%= @cliente.id %></li>
+	<li>nome: <%= @cliente.nome %></li>
+	<li>cpf: <%= @cliente.cpf %></li>
+	<li>fone: <%= @cliente.fone %></li>
+	<li>data_nascimento: <%= @cliente.data_nascimento %></li>
+	<li>created_at: <%= @cliente.created_at %></li>
+	<li>updated_at: <%= @cliente.updated_at %></li>
+	<li>email: <%= @cliente.email %></li>
+</ul>
+
+<%= debug params %>

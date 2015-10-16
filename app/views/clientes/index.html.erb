@@ -1,0 +1,51 @@
+<div class="page-header">
+	<%= link_to 'Cadastrar', new_cliente_path, class: 'btn btn-primary pull-right' %>
+	<h1>Clientes</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>nome</th>
+			<th>email</th>
+			<th>fone</th>
+			<th>data_nascimento</th>
+			<th>idade</th>
+			<th>created_at</th>
+			<th>opções</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @clientes.order(id: :desc).each do |cliente| %>
+		<tr>
+			<td><%= cliente.id %></td>
+			<td><%= link_to(cliente.nome, cliente_path(cliente.id)) %></td>
+			<td><%= cliente.email %></td>
+			<td><%= cliente.fone %></td>
+			<td><%= cliente.data_nascimento %></td>
+			<td><%= cliente.idade %></td>
+			<td><%= cliente.created_at %></td>
+			<td>
+				<%= link_to 'Show', cliente, class: 'btn btn-info btn-sm' %>
+				<%= link_to 'Edit', edit_cliente_path(cliente), class: 'btn btn-success btn-sm' %>
+
+				<%= link_to 'Destroy', cliente, 
+					method: :delete, 
+					data: {confirm: 'Deseja mesmo excluir este registro?'}, 
+					class: 'btn btn-danger btn-sm' 
+				%>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+<hr>
+	<p> Total: <%= @clientes.size %> </p>
+<hr>
+
+
+
