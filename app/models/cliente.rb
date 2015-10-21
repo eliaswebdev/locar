@@ -1,7 +1,10 @@
 load 'email_validator.rb'
 
 class Cliente < ActiveRecord::Base
-	
+	## RELACIONAMENTOS
+	has_many :locacoes
+
+
 	## VALIDAÇÕES
 	validates :nome, :cpf, :fone, :data_nascimento, :email, presence: true
 	validates :nome, length: { in: 6..40 }

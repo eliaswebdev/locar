@@ -1,0 +1,13 @@
+<%= simple_form_for @veiculo do |f| %>
+  <%= f.association :modelo, collection: Modelo.all.map {|modelo| ["#{modelo.marca.nome} - #{modelo.nome}", modelo.id]}, prompt: 'Selecione o Modelo' %>
+  <%= f.input :placa %>
+  <%= f.input :quilometragem %>
+  <%= f.input :cor %>
+  <%= f.input :ano_fabricacao %>
+  <%= f.input :ano_modelo %>
+  <%= f.input :portas %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                veiculos_path, :class => 'btn btn-default' %>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002125355) do
+ActiveRecord::Schema.define(version: 20151021132444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20151002125355) do
     t.datetime "updated_at",      null: false
     t.string   "email"
   end
+
+  create_table "locacoes", force: :cascade do |t|
+    t.integer  "cliente_id"
+    t.integer  "veiculo_id"
+    t.float    "valor_diaria"
+    t.float    "valor_desconto"
+    t.integer  "quilometragem_inicial"
+    t.integer  "quilometragem_final"
+    t.date     "data_locacao"
+    t.date     "data_devolucao"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "locacoes", ["cliente_id"], name: "index_locacoes_on_cliente_id", using: :btree
+  add_index "locacoes", ["veiculo_id"], name: "index_locacoes_on_veiculo_id", using: :btree
 
   create_table "marcas", force: :cascade do |t|
     t.string   "nome"
@@ -53,5 +69,7 @@ ActiveRecord::Schema.define(version: 20151002125355) do
 
   add_index "veiculos", ["modelo_id"], name: "index_veiculos_on_modelo_id", using: :btree
 
+  add_foreign_key "locacoes", "clientes"
+  add_foreign_key "locacoes", "veiculos"
   add_foreign_key "veiculos", "modelos"
 end

@@ -4,7 +4,7 @@ class MarcasController < ApplicationController
   # GET /marcas
   # GET /marcas.json
   def index
-    @marcas = Marca.all
+    @marcas = Marca.page(params[:page]).per(10)
   end
 
   # GET /marcas/1

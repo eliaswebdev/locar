@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente_id: 
+  veiculo_id: 
+  valor_diaria: 1.5
+  valor_desconto: 1.5
+  quilometragem_inicial: 1
+  quilometragem_final: 1
+  data_locacao: 2015-10-21
+  data_devolucao: 2015-10-21
+
+two:
+  cliente_id: 
+  veiculo_id: 
+  valor_diaria: 1.5
+  valor_desconto: 1.5
+  quilometragem_inicial: 1
+  quilometragem_final: 1
+  data_locacao: 2015-10-21
+  data_devolucao: 2015-10-21

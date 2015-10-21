@@ -1,37 +1,30 @@
-<%- model_class = Marca -%>
+<%- model_class = Modelo -%>
 <div class="page-header">
-  <%= link_to t('.new', :default => t("helpers.links.new")), new_marca_path, :class => 'btn btn-primary pull-right' %>
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_modelo_path, :class => 'btn btn-primary pull-right' %>
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:marca_id) %></th>
       <th><%= model_class.human_attribute_name(:nome) %></th>
-      <th><%= model_class.human_attribute_name(:modelos) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @marcas.each do |marca| %>
+    <% @modelos.each do |modelo| %>
       <tr>
-        <td><%= link_to marca.id, marca_path(marca) %></td>
-        <td><%= marca.nome %></td>
-        <td>
-          <ul>
-            <% marca.modelos.each do |modelo| %>
-            <li><%= modelo.nome %></li>
-            <% end %>
-            <li>Total: <%= marca.modelos.size %></li>
-          </ul>
-        </td>
-        <td><%=l marca.created_at %></td>
+        <td><%= link_to modelo.id, modelo_path(modelo) %></td>
+        <td><%= modelo.marca.nome %></td>
+        <td><%= modelo.nome %></td>
+        <td><%=l modelo.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_marca_path(marca), :class => 'btn btn-default btn-xs' %>
+                      edit_modelo_path(modelo), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      marca_path(marca),
+                      modelo_path(modelo),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -41,5 +34,4 @@
   </tbody>
 </table>
 
-<%= paginate @marcas %>
 

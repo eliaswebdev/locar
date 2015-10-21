@@ -1,0 +1,8 @@
+<%= simple_form_for @modelo do |f| %>
+  <%= f.association :marca, collection: Marca.order(nome: :asc).map {|marca| [marca.nome, marca.id]}, prompt: 'Selecione a Marca' %>
+  <%= f.input :nome %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                modelos_path, :class => 'btn btn-default' %>
+<% end %>

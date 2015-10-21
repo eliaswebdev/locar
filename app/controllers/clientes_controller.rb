@@ -3,9 +3,9 @@ class ClientesController < ApplicationController
 
 	def index
 		if params[:search].present?
-			@clientes = Cliente.search(params[:search]).page params[:page]
+			@clientes = Cliente.search(params[:search]).page(params[:page])
 		else
-			@clientes = Cliente.page params[:page]
+			@clientes = Cliente.page(params[:page])
 		end
 	end
 

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :clientes
   resources :marcas
+  resources :modelos
+  resources :veiculos
+  resources :locacoes
 
   root 'paginas#index'
 

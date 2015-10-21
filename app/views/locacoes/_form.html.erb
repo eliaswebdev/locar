@@ -1,0 +1,14 @@
+<%= simple_form_for @locacao do |f| %>
+  <%= f.association :cliente, collection: Cliente.all.map {|cliente| [cliente.nome, cliente.id]}, prompt: 'Selecione o Cliente' %>
+  <%= f.association :veiculo, collection: Veiculo.all.map {|veiculo| [veiculo.placa, veiculo.id]}, prompt: 'Selecione o Veículo' %>
+  <%= f.input :valor_diaria %>
+  <%= f.input :valor_desconto %>
+  <%= f.input :quilometragem_inicial %>
+  <%= f.input :quilometragem_final %>
+  <%= f.input :data_locacao, as: :string, input_html: {type: :date} %>
+  <%= f.input :data_devolucao, as: :string, input_html: {type: :date} %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                locacoes_path, :class => 'btn btn-default' %>
+<% end %>
