@@ -69,6 +69,6 @@ class LocacoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def locacao_params
-      params.require(:locacao).permit(:cliente_id, :veiculo_id, :valor_diaria, :valor_desconto, :quilometragem_inicial, :quilometragem_final, :data_locacao, :data_devolucao)
+      params.require(:locacao).permit(:cliente_id, :veiculo_id, :valor_diaria, :valor_desconto, :quilometragem_inicial, :quilometragem_final, :data_locacao, :data_devolucao, :data_prevista)
     end
 end

@@ -5,7 +5,8 @@
   <%= f.input :valor_desconto %>
   <%= f.input :quilometragem_inicial %>
   <%= f.input :quilometragem_final %>
-  <%= f.input :data_locacao, as: :string, input_html: {type: :date} %>
+  <%= f.input :data_locacao %>
+  <%= f.input :data_prevista %>
   <%= f.input :data_devolucao, as: :string, input_html: {type: :date} %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
