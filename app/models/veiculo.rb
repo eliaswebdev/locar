@@ -14,5 +14,8 @@ class Veiculo < ActiveRecord::Base
 	  else
 	    self.all
 	  end
-	end	
+	end
+
+	## UPLOAD
+	mount_uploader :foto, FotoUploader
 end

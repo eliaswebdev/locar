@@ -20,6 +20,8 @@
   <dd><%= @veiculo.ano_modelo %></dd>
   <dt><strong><%= model_class.human_attribute_name(:portas) %>:</strong></dt>
   <dd><%= @veiculo.portas %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:foto) %>:</strong></dt>
+  <dd><%= image_tag @veiculo.foto_url %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

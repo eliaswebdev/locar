@@ -9,8 +9,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:cliente_id) %></th>
       <th><%= model_class.human_attribute_name(:veiculo_id) %></th>
-      <th><%= model_class.human_attribute_name(:valor_diaria) %></th>
-      <th><%= model_class.human_attribute_name(:valor_desconto) %></th>
+      <th><%= model_class.human_attribute_name(:custo_locacao) %></th>
       <th><%= model_class.human_attribute_name(:km_inicial) %></th>
       <th><%= model_class.human_attribute_name(:km_final) %></th>
       <th><%= model_class.human_attribute_name(:data_locacao) %></th>
@@ -31,13 +30,17 @@
           <% end %>
         </td>
         <td><%= link_to "#{locacao.veiculo.placa} <br> #{locacao.veiculo.modelo.nome}".html_safe, veiculo_path(locacao.veiculo) %></td>
-        <td><%= locacao.valor_diaria %></td>
-        <td><%= locacao.valor_desconto %></td>
+        <td>
+            Valor Diária: <%= number_to_currency locacao.valor_diaria if locacao.valor_diaria.present? %> <br>
+            Valor Desconto: <%= number_to_currency locacao.valor_desconto if locacao.valor_desconto.present? %> <br>
+            Dias alugados: <%= locacao.dias_locados %><br>
+            Valor Total: <%= number_to_currency locacao.custo_total if locacao.custo_total.present? %>
+        </td>
         <td><%= locacao.quilometragem_inicial %> km</td>
         <td><%= "#{locacao.quilometragem_final} km" if locacao.quilometragem_final.present? %></td>
-        <td><%= locacao.data_locacao %></td>
-        <td><%= locacao.data_prevista %></td>
-        <td><%= locacao.data_devolucao %></td>
+        <td><%=l locacao.data_locacao if locacao.data_locacao.present? %></td>
+        <td><%=l locacao.data_prevista if locacao.data_prevista.present? %></td>
+        <td><%=l locacao.data_devolucao if locacao.data_devolucao.present? %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_locacao_path(locacao), :class => 'btn btn-default btn-xs' %>
@@ -51,4 +54,3 @@
     <% end %>
   </tbody>
 </table>
-

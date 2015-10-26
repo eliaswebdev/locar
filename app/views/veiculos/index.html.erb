@@ -34,7 +34,12 @@
       <tr>
         <td><%= link_to veiculo.id, veiculo_path(veiculo) %></td>
         <td><%= veiculo.modelo.marca.nome %>/<%= veiculo.modelo.nome %></td>
-        <td><%= veiculo.placa %></td>
+        <td>
+          <% if veiculo.foto.present? %>
+          <%= image_tag veiculo.foto_url(:thumb) %> <br>
+          <% end %>
+          <%= veiculo.placa %>
+        </td>
         <td><%= veiculo.quilometragem %></td>
         <td><%= veiculo.cor %></td>
         <td><%= veiculo.ano_fabricacao %></td>
