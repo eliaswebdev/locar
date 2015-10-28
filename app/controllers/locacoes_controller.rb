@@ -1,6 +1,9 @@
 class LocacoesController < ApplicationController
   before_action :set_locacao, only: [:show, :edit, :update, :destroy]
 
+  # BARREIRA DO DEVISE
+  before_action :authenticate_user!
+
   # GET /locacoes
   # GET /locacoes.json
   def index

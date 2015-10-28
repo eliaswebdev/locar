@@ -29,7 +29,14 @@
             <%= locacao.cliente.fone %> <br>
           <% end %>
         </td>
-        <td><%= link_to "#{locacao.veiculo.placa} <br> #{locacao.veiculo.modelo.nome}".html_safe, veiculo_path(locacao.veiculo) %></td>
+        <td>
+          <%= link_to veiculo_path(locacao.veiculo) do %>
+            <%#= image_tag locacao.veiculo.foto.thumb.url %>
+            <%= image_tag locacao.veiculo.foto_url(:thumb) %> <br>
+            <%= "#{locacao.veiculo.placa} <br> #{locacao.veiculo.modelo.nome}".html_safe %>
+          <% end %>
+
+        </td>
         <td>
             Valor Diária: <%= number_to_currency locacao.valor_diaria if locacao.valor_diaria.present? %> <br>
             Valor Desconto: <%= number_to_currency locacao.valor_desconto if locacao.valor_desconto.present? %> <br>

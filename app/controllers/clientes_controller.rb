@@ -1,6 +1,9 @@
 class ClientesController < ApplicationController
 	before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
+	# BARREIRA DO DEVISE
+	before_action :authenticate_user!
+
 	def index
 		if params[:search].present?
 			@clientes = Cliente.search(params[:search]).page(params[:page])

@@ -9,6 +9,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'cpf_cnpj'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'devise'
+gem "audited-activerecord", "~> 4.0"
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'

@@ -1,6 +1,9 @@
 class ModelosController < ApplicationController
   before_action :set_modelo, only: [:show, :edit, :update, :destroy]
 
+  # BARREIRA DO DEVISE
+  before_action :authenticate_user!
+
   # GET /modelos
   # GET /modelos.json
   def index

@@ -5,4 +5,7 @@ class Marca < ActiveRecord::Base
 
 	## RELACIONAMENTOS
 	has_many :modelos
+
+	## AUDITORIA
+	audited
 end

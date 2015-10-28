@@ -1,6 +1,9 @@
 class VeiculosController < ApplicationController
   before_action :set_veiculo, only: [:show, :edit, :update, :destroy]
 
+  # BARREIRA DO DEVISE
+  before_action :authenticate_user!  
+
   # GET /veiculos
   # GET /veiculos.json
   def index

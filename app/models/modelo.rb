@@ -9,4 +9,7 @@ class Modelo < ActiveRecord::Base
 	## VALIDAÇÕES
 	validates :nome, :marca_id, presence: true
 	validates :nome, uniqueness: true
+
+	## AUDITORIA
+	audited	
 end

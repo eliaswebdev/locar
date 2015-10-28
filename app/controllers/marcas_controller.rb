@@ -1,6 +1,9 @@
 class MarcasController < ApplicationController
   before_action :set_marca, only: [:show, :edit, :update, :destroy]
 
+  # BARREIRA DO DEVISE
+  before_action :authenticate_user!
+
   # GET /marcas
   # GET /marcas.json
   def index
